@@ -1,0 +1,109 @@
+﻿FEATURE CODE:
+
+package step.definations;
+
+	import org.junit.runner.RunWith;
+
+	import io.cucumber.junit.Cucumber;
+	import io.cucumber.junit.CucumberOptions;
+	import io.cucumber.testng.AbstractTestNGCucumberTests;
+
+	@SuppressWarnings("deprecation")
+		@RunWith(Cucumber.class)
+		@CucumberOptions(
+				features = "src/test/resources/Feature/login.feature",glue= {"step.definations"},
+				monochrome=true,
+				plugin= {"pretty","html:target/HtmlReports.html",
+						"json:target/JSONReports.xml"}
+				)
+		public class testRunner1 extends AbstractTestNGCucumberTests{
+	}
+
+
+
+GLUE CODE:
+
+package step.definations;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class implictWait1 {
+	
+WebDriver driver;
+
+@Given("browser  open")
+public void browser_open() {
+	WebDriver driver =new ChromeDriver();
+	driver.manage().window().maximize();
+	driver.navigate().to("https://timesofindia.indiatimes.com/");
+	//System.out.println(driver.getTitle());
+    // Write code here that turns the phrase above into concrete actions
+    //throw new io.cucumber.java.PendingException();
+}
+
+@Given("user selects the language and click on it")
+public void user_selects_the_language_and_click_on_it() {
+	WebElement drpdwn =driver.findElement(By.xpath("//html/body/div[4]/div/div[4]/div/div[2]/div/div/div[1]/div[2]/div"));
+	//html/body/div[4]/div/div[4]/div/div[2]/div/div/div[1]/div[2]/div
+	Select sel= new Select(drpdwn);
+	sel.selectByVisibleText("hindi");
+    // Write code here that turns the phrase above into concrete actions
+   // throw new io.cucumber.java.PendingException();
+	//*[@id=\"top-bar-container\"]/div/div/div[1]/div[2[/div/div
+}
+
+@When("implict wait test")
+public void implict_wait_test() {
+	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(300));
+	
+    // Write code here that turns the phrase above into concrete actions
+    //throw new io.cucumber.java.PendingException();
+}
+
+@Then("user quit")
+public void user_quit() {
+    // Write code here that turns the phrase above into concrete actions
+   // throw new io.cucumber.java.PendingException();
+}
+
+
+
+}
+
+
+
+TEST RUNNER:
+
+package step.definations;
+
+	import org.junit.runner.RunWith;
+
+	import io.cucumber.junit.Cucumber;
+	import io.cucumber.junit.CucumberOptions;
+	import io.cucumber.testng.AbstractTestNGCucumberTests;
+
+	@SuppressWarnings("deprecation")
+		@RunWith(Cucumber.class)
+		@CucumberOptions(
+				features = "src/test/resources/Feature/login.feature",glue= {"step.definations"},
+				monochrome=true,
+				plugin= {"pretty","html:target/HtmlReports.html",
+						"json:target/JSONReports.xml"}
+				)
+		public class testRunner1 extends AbstractTestNGCucumberTests{
+	}
+
+
+
+XML:
+
