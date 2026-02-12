@@ -5,7 +5,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 
-import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
 public class pathQuery_test {
@@ -23,6 +22,7 @@ public class pathQuery_test {
 		.then().statusCode(200)
 		.body("data[0].first_name",equalTo("vijju"))
 		.body("data.first_name",hasItems("vijju","nani"));
+		
 	}
 
 
